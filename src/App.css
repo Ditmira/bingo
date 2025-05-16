@@ -36,3 +36,75 @@
     transform: rotate(360deg);
   }
 }
+/* styles.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #282c34, #3a3f47);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.app {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #a0aec0;
+  margin-bottom: 1.5rem;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.cell {
+  background-color: #444c56;
+  padding: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: bold;
+  font-size: 0.9rem;
+  word-wrap: break-word;
+  user-select: none;
+}
+
+.cell:hover {
+  background-color: #586475;
+}
+
+.cell.marked {
+  background-color: #38bdf8;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.row {
+  display: contents;
+}
+
+.bingo-reward {
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #facc15;
+  font-weight: bold;
+}
