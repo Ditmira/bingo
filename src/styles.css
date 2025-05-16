@@ -1,0 +1,120 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f8f9fa, #e0f7fa);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #1e88e5;
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.cell {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: bold;
+    font-size: 1.25rem;
+    user-select: none;
+    margin: 5px;
+}
+
+.cell:hover {
+    background-color: #e3f2fd;
+}
+
+.cell.marked {
+    background-color: #42a5f5;
+    color: white;
+    transform: scale(1.05);
+}
+
+.cell.free {
+    background-color: #ffd54f;
+    color: #3e2723;
+    font-style: italic;
+}
+
+.cell-content {
+    pointer-events: none;
+}
+
+.bingo-reward {
+    margin-top: 2rem;
+}
+
+.bingo-popup {
+    background-color: #c8e6c9;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: pop 0.5s ease forwards;
+}
+
+.bingo-text {
+    font-size: 2rem;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.bingo-subtext {
+    font-size: 1rem;
+    color: #388e3c;
+}
+
+@keyframes pop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .cell {
+        font-size: 1rem;
+        margin: 5px;
+    }
+
+    .bingo-popup {
+        padding: 1rem;
+    }
+
+    .bingo-text {
+        font-size: 1.5rem;
+    }
+}
