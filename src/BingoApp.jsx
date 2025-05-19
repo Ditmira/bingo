@@ -167,6 +167,7 @@ export default function BingoApp() {
             ))}
           </div>
         </div>
+
         {bingo && (
             <motion.div
                 className="bingo-reward"
