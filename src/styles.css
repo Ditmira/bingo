@@ -48,7 +48,6 @@ body {
     font-weight: bold;
     font-size: 1.25rem;
     user-select: none;
-    margin: 5px;
 }
 
 .cell:hover {
@@ -75,6 +74,29 @@ body {
     margin-top: 2rem;
 }
 
+.letter-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.letter-cell {
+    width: 60px;
+    height: 60px;
+    margin: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    color: #333;
+}
+
+.no-click {
+    pointer-events: none;
+}
 .bingo-popup {
     background-color: #c8e6c9;
     padding: 1.5rem 2rem;
@@ -107,7 +129,6 @@ body {
 
     .cell {
         font-size: 1rem;
-        margin: 5px;
     }
 
     .bingo-popup {
