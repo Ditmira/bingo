@@ -35,35 +35,48 @@ const getColumnLetter = (colIdx) => ['B', 'I', 'N', 'G', 'O'][colIdx];
 const generateCalls = (board) => {
   const calls = [];
   const used = new Set();
-  const boostChance = 0.65; // 65% chance to pick a number from the board
+  const boostChance = 0.85;
 
-  while (calls.length < 10) {
-    let letterIdx, number, combo;
-
-    if (Math.random() < boostChance) {
-      // Pick a number from the board
-      while (true) {
-        letterIdx = Math.floor(Math.random() * 5);
-        const col = board.map(row => row[letterIdx]);
-        const candidates = col.filter(cell => cell.word !== 'FREE');
-        if (candidates.length === 0) continue;
-        const chosen = candidates[Math.floor(Math.random() * candidates.length)];
-        number = parseInt(chosen.word, 10);
-        combo = `${getColumnLetter(letterIdx)}${number}`;
-        if (!used.has(combo)) break;
+  // Gather all number-letter combinations from the board
+  const boardCombos = [];
+  for (let rowIdx = 0; rowIdx < 5; rowIdx++) {
+    for (let colIdx = 0; colIdx < 5; colIdx++) {
+      const cell = board[colIdx][rowIdx];
+      if (cell.word !== "FREE") {
+        const letter = getColumnLetter(colIdx);  // Use colIdx here
+        const combo = `${letter}${cell.word}`;
+        boardCombos.push(combo);
       }
+    }
+  }
+
+
+  console.log(boardCombos)
+  while (calls.length < 30) {
+    let combo;
+
+    if (Math.random() < boostChance && boardCombos.length > 0) {
+      // Pick a correct combo directly from the board
+      combo = boardCombos[Math.floor(Math.random() * boardCombos.length)];
+
+
     } else {
-      letterIdx = Math.floor(Math.random() * 5);
-      number = Math.floor(Math.random() * 75) + 1;
-      combo = `${getColumnLetter(letterIdx)}${number}`;
-      if (used.has(combo)) continue;
+      // Random combo
+      const letter = getColumnLetter(Math.floor(Math.random() * 5));
+      const number = Math.floor(Math.random() * 75) + 1;
+      combo = `${letter}${number}`;
+      // console.log("combo ", combo)
     }
 
-    used.add(combo);
-    calls.push(combo);
+    if (!used.has(combo)) {
+      used.add(combo);
+      calls.push(combo);
+    }
   }
+
   return calls;
 };
+
 
 export default function BingoApp() {
   const [board, setBoard] = useState(generateBoard);
@@ -100,9 +113,11 @@ export default function BingoApp() {
 
       let found = null;
       for (let row = 0; row < 5; row++) {
-        const cell = boardRef.current[row][colIdx];
+        const cell = boardRef.current[colIdx][row];
+        console.log("cell: ",cell)
         if (cell.word === number) {
           found = [row, colIdx];
+          console.log("found ",found)
           break;
         }
       }
@@ -124,7 +139,7 @@ export default function BingoApp() {
   };
 
   const handleClick = (rowIdx, colIdx) => {
-    if (!clickableCell || (clickableCell[0] !== rowIdx || clickableCell[1] !== colIdx)) return;
+    if (!clickableCell || (clickableCell[0] !== colIdx || clickableCell[1] !== rowIdx)) return;
     if (board[rowIdx][colIdx].word === 'FREE') return;
 
     const newBoard = board.map((row, r) =>
@@ -167,7 +182,6 @@ export default function BingoApp() {
             ))}
           </div>
         </div>
-
         {bingo && (
             <motion.div
                 className="bingo-reward"
