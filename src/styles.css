@@ -48,6 +48,8 @@ body {
     font-weight: bold;
     font-size: 1.25rem;
     user-select: none;
+    margin-bottom: 5px;
+
 }
 
 .cell:hover {
@@ -78,6 +80,7 @@ body {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
+    margin-right: 15px;
 }
 
 .letter-cell {

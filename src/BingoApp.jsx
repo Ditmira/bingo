@@ -172,7 +172,7 @@ export default function BingoApp() {
 
   return (
       <div className="app">
-        <h1 className="title">✨ Number Bingo ✨</h1>
+        <h1 className="title">✨ Bingo ✨</h1>
         <p className="subtitle">Tap the highlighted number if it appears after each call!</p>
         <div className="current-call">
           {currentCall ? `🔔 Current Call: ${currentCall}` : '⏳ Waiting for calls...'}
